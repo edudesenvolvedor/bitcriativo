@@ -24,7 +24,7 @@ const Navbar = ({ children }: Props) => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full transition-all duration-300 p-4 ${
+            className={`z-40 fixed top-0 left-0 w-full transition-all duration-300 p-4 ${
                 hasBackground ? "bg-white shadow-lg" : "bg-transparent"
             }`}
         >

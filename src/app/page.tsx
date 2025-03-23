@@ -2,6 +2,7 @@ import {Navlink} from "@/components/Navbar/Navlink";
 import {Navbar} from "@/components/Navbar";
 import {Hero} from "@/components/Sections/Hero";
 import {About} from "@/components/Sections/About";
+import {Features} from "@/components/Sections/Features";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         </Navbar>
         <Hero/>
         <About/>
+        <Features/>
     </>
   );
 }
