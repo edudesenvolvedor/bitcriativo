@@ -1,5 +1,6 @@
 import {Navlink} from "@/components/Navbar/Navlink";
 import {Navbar} from "@/components/Navbar";
+import {Hero} from "@/components/Sections/Hero";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
             <Navlink href="/#preco">Preço</Navlink>
             <Navlink href="/#contato">Contato</Navlink>
         </Navbar>
+        <Hero/>
     </>
   );
 }
