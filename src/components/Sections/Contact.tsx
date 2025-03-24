@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import {Sections} from "@/components/Sections/index";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -38,13 +40,12 @@ const Contact = () => {
                     <label htmlFor="name" className="block text-lg text-gray-900 font-semibold mb-2">
                         Nome
                     </label>
-                    <input
+                    <Input
                         type="text"
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-6 py-4 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-red-500 outline-none"
                         placeholder="Seu Nome"
                         required
                     />
@@ -54,13 +55,12 @@ const Contact = () => {
                     <label htmlFor="email" className="block text-lg text-gray-900 font-semibold mb-2">
                         E-mail
                     </label>
-                    <input
+                    <Input
                         type="email"
                         id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-6 py-4 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-red-500 outline-none"
                         placeholder="Seu E-mail"
                         required
                     />
@@ -82,12 +82,12 @@ const Contact = () => {
                     />
                 </div>
 
-                <button
+                <Button
                     type="submit"
-                    className="w-full py-4 bg-gray-900 text-white font-medium uppercase tracking-wide text-lg hover:bg-red-500 transition-all duration-300"
+                    variant="secondary"
                 >
                     Enviar Mensagem
-                </button>
+                </Button>
             </form>
         </Sections>
     );
