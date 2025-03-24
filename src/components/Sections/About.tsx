@@ -1,4 +1,5 @@
 import {Sections} from "@/components/Sections/index";
+import Button from "@/components/Button";
 
 export const About = () => {
     return (
@@ -15,12 +16,9 @@ export const About = () => {
                         Com um modelo de assinatura acessível, garantimos que sua empresa tenha suporte tecnológico contínuo para crescer com inovação e segurança.
                     </p>
                     <div className="mt-6">
-                        <a
-                            href="/contato"
-                            className="px-6 py-3 bg-gray-900 text-white font-medium uppercase tracking-wide text-lg hover:bg-red-500 transition-all duration-300"
-                        >
+                        <Button variant={"secondary"}>
                             Fale Conosco
-                        </a>
+                        </Button>
                     </div>
                 </div>
                 <div className="relative flex items-center justify-center">

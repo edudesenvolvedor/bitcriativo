@@ -2,6 +2,7 @@
 
 import React, { ReactNode, useEffect, useState } from "react";
 import Link from "next/link";
+import Button from "@/components/Button";
 
 type Props = {
     children: ReactNode;
@@ -41,9 +42,9 @@ const Navbar = ({ children }: Props) => {
                         {children}
                     </ul>
 
-                    <button className="px-6 py-2 border border-black bg-white text-black font-bold text-md uppercase tracking-wide hover:bg-black hover:text-white transition-all">
+                    <Button>
                         Quero um Orçamento
-                    </button>
+                    </Button>
                 </div>
                 <button className="md:hidden text-primary focus:outline-none" onClick={toggleMenu}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">

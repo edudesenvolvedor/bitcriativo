@@ -1,4 +1,5 @@
 import {Sections} from "@/components/Sections/index";
+import Button from "@/components/Button";
 
 export const Hero = () => {
     return (
@@ -12,12 +13,9 @@ export const Hero = () => {
                         Sua empresa merece tecnologia de ponta. Acesse uma equipe de TI especializada e impulsione seu negócio com inovação.
                     </p>
                     <div className="mt-6">
-                        <a
-                            href="/contato"
-                            className="px-6 py-3 bg-gray-900 text-white font-medium uppercase tracking-wide text-lg hover:bg-red-500 transition-all duration-300"
-                        >
+                        <Button variant={"secondary"}>
                             Comece Agora
-                        </a>
+                        </Button>
                     </div>
                 </div>
 
