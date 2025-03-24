@@ -1,10 +1,12 @@
 import {Sections} from "@/components/Sections/index";
-import Button from "@/components/Button";
+import imgAboutUs from "@/assets/images/img_4.png";
+import Image from "next/image";
+import Link from "next/link";
 
 export const About = () => {
     return (
         <>
-            <Sections label={"Sobre nós"} className={"grid md:grid-cols-2 gap-8"}>
+            <Sections label={"Sobre nós"} labelAlign={"bottomRight"} className={"grid md:grid-cols-2 gap-8"}>
                 <div className="flex flex-col">
                     <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
                         <span className="text-red-500">Sobre</span> Nós
@@ -15,15 +17,15 @@ export const About = () => {
                     <p className="text-lg text-gray-600 mt-4 max-w-md">
                         Com um modelo de assinatura acessível, garantimos que sua empresa tenha suporte tecnológico contínuo para crescer com inovação e segurança.
                     </p>
-                    <div className="mt-6">
-                        <Button variant={"secondary"}>
+                    <div className="mt-6 flex">
+                        <Link className={"flex items-center justify-center font-medium rounded-lg transition-all duration-300 cursor-pointer bg-gray-900 text-white hover:bg-gray-700 py-3 px-6"} href={"/#contato"}>
                             Fale Conosco
-                        </Button>
+                        </Link>
                     </div>
                 </div>
                 <div className="relative flex items-center justify-center">
-                    <img
-                        src="https://source.unsplash.com/600x600/?team,technology"
+                    <Image
+                        src={imgAboutUs}
                         alt="Equipe de tecnologia"
                         className="w-full h-auto object-cover shadow-2xl"
                     />
