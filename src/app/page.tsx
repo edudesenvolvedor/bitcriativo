@@ -6,6 +6,7 @@ import {Testimonials} from "@/components/Sections/Testimonials";
 import {Contact} from "@/components/Sections/Contact";
 import {MainLayout} from "@/layouts/MainLayout";
 import {Portfolio} from "@/components/Sections/Portfolio";
+import {Pricing} from "@/components/Sections/Pricing";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Portfolio/>
         <Services/>
         <Testimonials/>
+        <Pricing/>
         <Contact/>
     </MainLayout>
   );
