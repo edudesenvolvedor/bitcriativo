@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from "react";
-import {Sections} from "@/components/Sections/index";
+import React, { useState, useRef, useEffect } from "react";
+import { Sections } from "@/components/Sections/index";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import { motion } from "framer-motion";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +12,9 @@ const Contact = () => {
         email: "",
         message: "",
     });
+
+    const [hasAnimated, setHasAnimated] = useState(false);  // Marca se a animação já foi disparada
+    const sectionRef = useRef<HTMLDivElement>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -26,16 +30,57 @@ const Contact = () => {
         console.log("Form Data Submitted:", formData);
     };
 
-    return (
-        <Sections label={"Contato"} labelAlign={"bottomLeft"} className={"text-center"}>
-            <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
-                Fale <span className="text-red-500">Conosco</span>
-            </h2>
-            <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                Tem alguma dúvida ou quer saber mais sobre nossos serviços? Preencha o formulário abaixo e entraremos em contato!
-            </p>
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting && !hasAnimated) {
+                    setHasAnimated(true); // Dispara a animação apenas uma vez
+                }
+            },
+            {
+                threshold: 0.75, // Aciona quando 75% do componente estiver visível
+            }
+        );
 
-            <form onSubmit={handleSubmit} className="mt-12 max-w-2xl mx-auto grid gap-8">
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        // Limpeza do observer ao desmontar o componente
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, [hasAnimated]);
+
+    return (
+        <Sections label={"Contato"} labelAlign={"bottomLeft"} className={"text-center"} ref={sectionRef}>
+            <motion.h2
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: hasAnimated ? 1 : 0, y: hasAnimated ? 0 : -30 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight"
+            >
+                Fale <span className="text-red-500">Conosco</span>
+            </motion.h2>
+            <motion.p
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: hasAnimated ? 1 : 0, y: hasAnimated ? 0 : -30 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto"
+            >
+                Tem alguma dúvida ou quer saber mais sobre nossos serviços? Preencha o formulário abaixo e entraremos em contato!
+            </motion.p>
+
+            <motion.form
+                onSubmit={handleSubmit}
+                className="mt-12 max-w-2xl mx-auto grid gap-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: hasAnimated ? 1 : 0, y: hasAnimated ? 0 : 30 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            >
                 <div>
                     <label htmlFor="name" className="block text-lg text-gray-900 font-semibold mb-2">
                         Nome
@@ -88,9 +133,9 @@ const Contact = () => {
                 >
                     Enviar Mensagem
                 </Button>
-            </form>
+            </motion.form>
         </Sections>
     );
 };
 
-export {Contact};
+export { Contact };

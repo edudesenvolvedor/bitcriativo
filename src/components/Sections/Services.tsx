@@ -1,5 +1,8 @@
-import React from "react";
-import {Sections} from "@/components/Sections/index";
+"use client"
+
+import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Sections } from "@/components/Sections/index";
 import { Code, ShieldCheck, Cloud, Users } from "lucide-react";
 
 const services = [
@@ -26,26 +29,66 @@ const services = [
 ];
 
 const Services = () => {
+    const sectionRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.4 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <Sections className={"text-center"}>
-            <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
+        <Sections ref={sectionRef} className={"text-center"}>
+            <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight"
+            >
                 <span className="text-red-500">Nossos</span> Serviços
-            </h2>
-            <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto"
+            >
                 Soluções tecnológicas sob medida para impulsionar sua empresa ao próximo nível.
-            </p>
+            </motion.p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mt-12">
                 {services.map((service, index) => (
-                    <div key={index} className="flex flex-col items-center text-center p-6 bg-white shadow-xl rounded-lg transition-all hover:scale-105 duration-300">
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
+                        className="flex flex-col items-center text-center p-6 bg-white shadow-xl rounded-lg transition-all hover:scale-105 duration-300"
+                    >
                         <div>{service.icon}</div>
                         <h3 className="text-2xl font-semibold text-gray-900 mt-4">{service.title}</h3>
                         <p className="text-lg text-gray-600 mt-2">{service.description}</p>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </Sections>
     );
 };
 
-export {Services};
+export { Services };

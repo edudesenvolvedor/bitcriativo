@@ -1,6 +1,6 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import { ReactNode } from "react";
+import { ReactNode, Ref} from "react";
 
 const labelClasses = cva(
     "absolute text-gray-300 font-bold uppercase opacity-50 select-none text-4xl md:text-6xl lg:text-8xl",
@@ -28,6 +28,7 @@ type Props = {
     children: ReactNode;
     className?: string;
     label?: string;
+    ref?: Ref<HTMLElement> | undefined;
 } & VariantProps<typeof labelClasses>;
 
 export const Sections = ({
@@ -35,10 +36,11 @@ export const Sections = ({
                              label,
                              labelAlign,
                              className,
+                             ref,
                              ...props
                          }: Props) => {
     return (
-        <section className="relative min-h-screen flex items-center justify-center bg-gray-100 p-4 md:p-6 lg:p-8">
+        <section ref={ref} className="relative min-h-screen flex items-center justify-center bg-gray-100 p-4 md:p-6 lg:p-8">
             <div className={`max-w-6xl mx-auto w-full ${className || ""}`}>
                 {children}
             </div>

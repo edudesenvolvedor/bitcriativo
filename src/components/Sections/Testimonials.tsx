@@ -1,6 +1,9 @@
+"use client"
+
 import React from "react";
-import {Sections} from "@/components/Sections/index";
-import {Star} from "lucide-react";
+import { motion } from "framer-motion";
+import { Sections } from "@/components/Sections/index";
+import { Star } from "lucide-react";
 
 const testimonials = [
     {
@@ -26,33 +29,52 @@ const testimonials = [
 const Testimonials = () => {
     return (
         <Sections className={"text-center"}>
-                <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
-                    O que nossos <span className="text-red-500">clientes</span> dizem
-                </h2>
-                <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                    Veja como a nossa equipe tem impactado positivamente as empresas de nossos clientes.
-                </p>
+            <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight"
+            >
+                O que nossos <span className="text-red-500">clientes</span> dizem
+            </motion.h2>
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto"
+            >
+                Veja como a nossa equipe tem impactado positivamente as empresas de nossos clientes.
+            </motion.p>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
-                    {testimonials.map((testimonial, index) => (
-                        <div key={index} className="p-8 bg-white shadow-lg rounded-lg text-left flex flex-col justify-evenly">
-                            <p className="text-lg text-gray-600 italic">&quot;{testimonial.text}&quot;</p>
-                            <div className="mt-4 flex items-center">
-                                <div className="flex text-yellow-500">
-                                    {[...Array(testimonial.rating)].map((_, i) => (
-                                        <Star key={i} className="w-5 h-5" />
-                                    ))}
-                                </div>
-                                <div className="ml-4">
-                                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                                    <p className="text-gray-600">{testimonial.position}</p>
-                                </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
+                {testimonials.map((testimonial, index) => (
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: index * 0.2 }}
+                        viewport={{ once: true }}
+                        className="p-8 bg-white shadow-lg rounded-lg text-left flex flex-col justify-evenly"
+                    >
+                        <p className="text-lg text-gray-600 italic">&quot;{testimonial.text}&quot;</p>
+                        <div className="mt-4 flex items-center">
+                            <div className="flex text-yellow-500">
+                                {[...Array(testimonial.rating)].map((_, i) => (
+                                    <Star key={i} className="w-5 h-5" />
+                                ))}
+                            </div>
+                            <div className="ml-4">
+                                <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                                <p className="text-gray-600">{testimonial.position}</p>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </motion.div>
+                ))}
+            </div>
         </Sections>
     );
 };
 
-export {Testimonials};
+export { Testimonials };

@@ -1,5 +1,8 @@
-import React from "react";
-import {Sections} from "@/components/Sections/index";
+"use client"
+
+import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Sections } from "@/components/Sections/index";
 
 const portfolioProjects = [
     {
@@ -28,20 +31,57 @@ const portfolioProjects = [
     },
 ];
 
-export function Portfolio () {
+export function Portfolio() {
+    const sectionRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.4 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <Sections label={"Portfólio"} className={"text-center"}>
-            <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
+        <Sections ref={sectionRef} label={"Portfólio"} className={"text-center"}>
+            <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight"
+            >
                 <span className="text-red-500">Nossos</span> Portfólio
-            </h2>
-            <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto pb-16">
+            </motion.h2>
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto pb-16"
+            >
                 Explore alguns dos nossos projetos anteriores. Cada um desses casos de sucesso representa
                 a nossa capacidade de transformar ideias em soluções reais e eficazes para nossos clientes.
-            </p>
+            </motion.p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 {portfolioProjects.map((project, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
                         className="relative group p-4 bg-white shadow-lg border border-gray-300 rounded-lg overflow-hidden"
                     >
                         <img
@@ -61,9 +101,9 @@ export function Portfolio () {
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </Sections>
     );
-};
+}
