@@ -1,5 +1,6 @@
 import React from "react";
 import {Sections} from "@/components/Sections/index";
+import {CheckCircle} from "lucide-react";
 
 const features = [
     {
@@ -22,32 +23,25 @@ const features = [
 
 const Features = () => {
     return (
-        <Sections>
-        <section className="bg-gray-100 py-20 px-8">
-            <div className="max-w-6xl mx-auto text-center">
-                <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
-                    <span className="text-red-500">Nossas</span> Features
-                </h2>
-                <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                    Conheça os benefícios exclusivos que oferecemos para a sua empresa crescer com tecnologia.
-                </p>
+        <Sections className={"text-center"}>
+            <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
+                <span className="text-red-500">Nossas</span> Features
+            </h2>
+            <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+                Conheça os benefícios exclusivos que oferecemos para a sua empresa crescer com tecnologia.
+            </p>
 
-                <div className="grid md:grid-cols-2 gap-12 mt-12">
-                    {features.map((feature, index) => (
-                        <div key={index} className="flex items-start space-x-4">
-                            <div>
-                                <h3 className="text-2xl font-semibold text-gray-900">{feature.title}</h3>
-                                <p className="text-lg text-gray-600 mt-2">{feature.description}</p>
-                            </div>
+            <div className="grid md:grid-cols-2 gap-12 mt-12">
+                {features.map((feature, index) => (
+                    <div key={index} className="flex items-start text-start space-x-4">
+                        <CheckCircle className="w-10 h-10 text-red-500 flex-shrink-0" />
+                        <div>
+                            <h3 className="text-2xl font-semibold text-gray-900">{feature.title}</h3>
+                            <p className="text-lg text-gray-600 mt-2">{feature.description}</p>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
-
-            <div className="absolute bottom-10 left-10 text-gray-300 text-8xl font-bold uppercase opacity-10 select-none">
-                Tecnologia
-            </div>
-        </section>
         </Sections>
     );
 };

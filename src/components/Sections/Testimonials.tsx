@@ -1,5 +1,6 @@
 import React from "react";
 import {Sections} from "@/components/Sections/index";
+import {Star} from "lucide-react";
 
 const testimonials = [
     {
@@ -34,12 +35,12 @@ const Testimonials = () => {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
                     {testimonials.map((testimonial, index) => (
-                        <div key={index} className="p-8 bg-white shadow-lg rounded-lg text-left">
-                            <p className="text-lg text-gray-600 italic">"{testimonial.text}"</p>
+                        <div key={index} className="p-8 bg-white shadow-lg rounded-lg text-left flex flex-col justify-evenly">
+                            <p className="text-lg text-gray-600 italic">&quot;{testimonial.text}&quot;</p>
                             <div className="mt-4 flex items-center">
                                 <div className="flex text-yellow-500">
                                     {[...Array(testimonial.rating)].map((_, i) => (
-                                        <span key={i} className="w-5 h-5" />
+                                        <Star key={i} className="w-5 h-5" />
                                     ))}
                                 </div>
                                 <div className="ml-4">
