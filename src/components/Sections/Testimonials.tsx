@@ -1,4 +1,5 @@
 import React from "react";
+import {Sections} from "@/components/Sections/index";
 
 const testimonials = [
     {
@@ -23,9 +24,7 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-        <section className="bg-gray-100 py-20 px-8">
-            <div className="max-w-6xl mx-auto text-center">
-                {/* Título */}
+        <Sections className={"text-center"}>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
                     O que nossos <span className="text-red-500">clientes</span> dizem
                 </h2>
@@ -33,7 +32,6 @@ const Testimonials = () => {
                     Veja como a nossa equipe tem impactado positivamente as empresas de nossos clientes.
                 </p>
 
-                {/* Grid de Depoimentos */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
                     {testimonials.map((testimonial, index) => (
                         <div key={index} className="p-8 bg-white shadow-lg rounded-lg text-left">
@@ -52,13 +50,7 @@ const Testimonials = () => {
                         </div>
                     ))}
                 </div>
-            </div>
-
-            {/* Tipografia Suíça no Fundo */}
-            <div className="absolute top-10 left-10 text-gray-300 text-8xl font-bold uppercase opacity-10 select-none">
-                Testemunhos
-            </div>
-        </section>
+        </Sections>
     );
 };
 

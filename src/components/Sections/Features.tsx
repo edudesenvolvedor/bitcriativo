@@ -1,4 +1,5 @@
 import React from "react";
+import {Sections} from "@/components/Sections/index";
 
 const features = [
     {
@@ -21,9 +22,9 @@ const features = [
 
 const Features = () => {
     return (
+        <Sections>
         <section className="bg-gray-100 py-20 px-8">
             <div className="max-w-6xl mx-auto text-center">
-                {/* Título */}
                 <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
                     <span className="text-red-500">Nossas</span> Features
                 </h2>
@@ -31,7 +32,6 @@ const Features = () => {
                     Conheça os benefícios exclusivos que oferecemos para a sua empresa crescer com tecnologia.
                 </p>
 
-                {/* Grid de Features */}
                 <div className="grid md:grid-cols-2 gap-12 mt-12">
                     {features.map((feature, index) => (
                         <div key={index} className="flex items-start space-x-4">
@@ -44,11 +44,11 @@ const Features = () => {
                 </div>
             </div>
 
-            {/* Tipografia Suíça no Fundo */}
             <div className="absolute bottom-10 left-10 text-gray-300 text-8xl font-bold uppercase opacity-10 select-none">
                 Tecnologia
             </div>
         </section>
+        </Sections>
     );
 };
 

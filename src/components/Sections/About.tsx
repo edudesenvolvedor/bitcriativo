@@ -1,7 +1,9 @@
+import {Sections} from "@/components/Sections/index";
+
 export const About = () => {
     return (
-        <section className="relative bg-gray-100 py-20 px-8">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <>
+            <Sections label={"Sobre nós"} className={"grid md:grid-cols-2 gap-8"}>
                 <div className="flex flex-col">
                     <h2 className="text-5xl md:text-6xl font-bold uppercase text-gray-900 leading-tight">
                         <span className="text-red-500">Sobre</span> Nós
@@ -28,10 +30,7 @@ export const About = () => {
                         className="w-full h-auto object-cover shadow-2xl"
                     />
                 </div>
-            </div>
-            <div className="absolute top-10 right-10 text-gray-300 text-8xl font-bold uppercase opacity-10 select-none">
-                Inovação
-            </div>
-        </section>
+            </Sections>
+        </>
     )
 }
